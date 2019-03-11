@@ -31,7 +31,7 @@ public:
 
 
 	template<typename VHead, typename ... VTail,     // copy
-		typename = typename std::enable_if<sizeof...(VTail) == sizeof...(Tail)>::type>
+		typename = typename std::enable_if< sizeof...(VTail) == sizeof...(Tail)  && std::is_convertible_v<VHead, Head> >::type>
 	Tuple(Tuple<VHead, VTail...> const& other)
 		: head(other.getHead()), tail(other.getTail()) {}
 
